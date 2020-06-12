@@ -55,6 +55,14 @@ func (cctxt *CodecContext) SetTimeBase(timeBase avcodec.Rational) {
 	cctxt.time_base.den = C.int(timeBase.Den())
 }
 
+func (cctxt *CodecContext) GetCodecTag() uint {
+	return uint(cctxt.codec_tag)
+}
+
+func (cctxt *CodecContext) SetCodecTag(t uint) {
+	cctxt.codec_tag = C.uint(t)
+}
+
 func (cctx *CodecContext) GetWidth() int {
 	return int(cctx.width)
 }
