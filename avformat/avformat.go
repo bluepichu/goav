@@ -85,7 +85,7 @@ func (f *InputFormat) AvIformatNext() *InputFormat {
 
 //If f is NULL, returns the first registered input format, if f is non-NULL, returns the next registered input format after f or NULL if f is the last one.
 func (f *InputFormat) ReadClose(c *Context) int {
-	return (int)((*C.struct_AVInputFormat)(f)).read_close((*C.struct_AVFormatContext)(c))
+	return (int)(((*C.struct_AVInputFormat)(f)).read_close((*C.struct_AVFormatContext)(c)))
 }
 
 //If f is NULL, returns the first registered output format, if f is non-NULL, returns the next registered output format after f or NULL if f is the last one.
