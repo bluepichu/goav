@@ -17,6 +17,12 @@ package avformat
 //#include <libavutil/avutil.h>
 //#include <libavutil/opt.h>
 //#include <libavdevice/avdevice.h>
+//int goav_call_input_format_read_close(struct AVInputFormat *format, struct AVFormatContext *context) {
+//    if (format->read_close)
+//        return format->read_close(context);
+//    else
+//        return 0;
+//}
 import "C"
 import (
 	"unsafe"
@@ -85,7 +91,7 @@ func (f *InputFormat) AvIformatNext() *InputFormat {
 
 //If f is NULL, returns the first registered input format, if f is non-NULL, returns the next registered input format after f or NULL if f is the last one.
 func (f *InputFormat) ReadClose(c *Context) int {
-	return (int)(((*C.struct_AVInputFormat)(f)).read_close((*C.struct_AVFormatContext)(c)))
+	return (int)(C.goav_call_input_format_read_close((*C.struct_AVInputFormat)(f), (*C.struct_AVFormatContext)(c)))
 }
 
 //If f is NULL, returns the first registered output format, if f is non-NULL, returns the next registered output format after f or NULL if f is the last one.

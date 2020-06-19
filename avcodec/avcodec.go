@@ -89,6 +89,10 @@ func (cp *AvCodecParameters) AvCodecSetCodecTag(tag uint) {
 	cp.codec_tag = C.uint(tag)
 }
 
+func (cp *AvCodecParameters) AvCodecParametersCopy(src *AvCodecParameters) int {
+	return int(C.avcodec_parameters_copy((*C.struct_AVCodecParameters)(cp), (*C.struct_AVCodecParameters)(src)))
+}
+
 func (c *Codec) AvCodecGetMaxLowres() int {
 	return int(C.av_codec_get_max_lowres((*C.struct_AVCodec)(c)))
 }
