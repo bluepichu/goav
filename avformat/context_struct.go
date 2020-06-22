@@ -129,6 +129,10 @@ func (ctxt *Context) Flags() int {
 	return int(ctxt.flags)
 }
 
+func (ctxt *Context) SetFlags(flags int) {
+	ctxt.flags = C.int(flags)
+}
+
 func (ctxt *Context) FlushPackets() int {
 	return int(ctxt.flush_packets)
 }
