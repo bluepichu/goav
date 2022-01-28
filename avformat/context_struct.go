@@ -5,6 +5,17 @@ package avformat
 
 //#cgo pkg-config: libavformat
 //#include <libavformat/avformat.h>
+/*
+int interruptCallback(void *ret)
+{
+    return *((int*)ret);
+}
+AVIOInterruptCB newInterruptCallback(int *ret)
+{
+	AVIOInterruptCB c = { interruptCallback, ret };
+	return c;
+}
+*/
 import "C"
 import (
 	"reflect"
@@ -43,6 +54,12 @@ func (ctxt *Context) Pb() *AvIOContext {
 
 func (ctxt *Context) InterruptCallback() AvIOInterruptCB {
 	return AvIOInterruptCB(ctxt.interrupt_callback)
+}
+
+func (ctxt *Context) SetInterruptCallback() *int {
+	ret := 0
+	ctxt.interrupt_callback = C.newInterruptCallback((*C.int)(unsafe.Pointer(&ret)))
+	return &ret
 }
 
 func (ctxt *Context) Programs() []*AvProgram {
