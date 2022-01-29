@@ -9,12 +9,12 @@ package avformat
 /*
 int interruptCallback(void *ret)
 {
-	printf("interruptCallback, ret @ %llxu = %d", ret, *((int*)ret));
+	printf("interruptCallback, ret @ %llxu = %d\n", ret, *((int*)ret));
     return *((int*)ret);
 }
 AVIOInterruptCB newInterruptCallback(int *ret)
 {
-	printf("newInterruptCallback, ret @ %llxu = %d", ret, *ret);
+	printf("newInterruptCallback, ret @ %llxu = %d\n", ret, *ret);
 	AVIOInterruptCB c = { interruptCallback, ret };
 	return c;
 }
