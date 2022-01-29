@@ -5,13 +5,16 @@ package avformat
 
 //#cgo pkg-config: libavformat
 //#include <libavformat/avformat.h>
+//#include <stdio.h>
 /*
 int interruptCallback(void *ret)
 {
+	printf("interruptCallback, ret @ %llxu = %d", ret, *ret);
     return *((int*)ret);
 }
 AVIOInterruptCB newInterruptCallback(int *ret)
 {
+	printf("newInterruptCallback, ret @ %llxu = %d", ret, *ret);
 	AVIOInterruptCB c = { interruptCallback, ret };
 	return c;
 }
